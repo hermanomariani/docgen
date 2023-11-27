@@ -76,38 +76,3 @@ function addNonNumberCharacters(initialDigits, documentString) {
     }
     return documentArray.join('')
 }
-
-function handleButtonClick() {
-    // e.preventDefault();
-    const type = document.querySelectorAll("input[name=type_gen]:checked")[0].value;
-    const ponc = document.querySelectorAll("input[name=ponctuation]:checked")[0].value;
-
-    console.log(type, ponc)
-}
-
-document.querySelector('.generate-button').addEventListener('click', (event) => {
-    event.preventDefault()
-    const type = document.querySelectorAll("input[name=type_gen]:checked")[0].value;
-    const ponc = document.querySelectorAll("input[name=ponctuation]:checked")[0].value;
-    let generatedDoc;
-
-    if (type === "cpf") {
-        if (ponc === "ponctuation") {
-            generatedDoc = generateDoc.cpf();
-        } else {
-            generatedDoc = generateDoc.cpf(false);
-        }
-    } else {
-        if (ponc === "ponctuation") {
-            generatedDoc = generateDoc.cnpj();
-        } else {
-            generatedDoc = generateDoc.cnpj(false);
-        }
-    }
-
-    document.querySelector(".generated-doc").value = generatedDoc;
-
-    navigator.clipboard.writeText(generatedDoc)
-    .then(() =>console.log('Document copied to clipboard'))
-    .then(() => "Erro ao copiar");
-})
